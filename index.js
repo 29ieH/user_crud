@@ -16,7 +16,6 @@ app.use(logger('dev'))
 app.get("/", (req, res) => {
     res.send("Hello world");
 });
-
 app.use('/', studentRoute,userRoute);
 app.use((err, req, res, next) => {
     console.error(err.stack);

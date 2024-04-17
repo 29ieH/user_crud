@@ -26,8 +26,26 @@ const {User} = require('../model/user_model.js')
                     success: false,
                     message: 'Server error. Please try again.',
                     error: error.message,
-                    path: path
                 });
         })
     }
-module.exports = {createUser,findAllUser}
+    function findOne(req,res){
+        const userid = req.params.id;
+        console.log(userid)
+        return User.findOne({id:userid}).then(user=>{
+            console.log(user)
+            if(!user) return res.status(404).json({
+                succes:false,
+                message: 'User not found'
+            });
+            res.status(200).render('viewuser',{users:user})
+        }).catch(error => {
+            console.error(error);
+            res.status(500).json({
+                success: false,
+                message: 'Server error. Please try again.',
+                error: error.message,
+            });
+    })
+    }
+module.exports = {createUser,findAllUser,findOne}

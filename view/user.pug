@@ -4,14 +4,13 @@ html(lang="en")
         meta(charset="UTF-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0")
         title Users
-        listItem{
-
-        }
+        link(href="./view/style.css")
     body 
     h1 Users
-    ul.list
+    ul(style="text-decoration:none;")
         each user in users 
-            li
-                a(href="/user/?id="#{user.id})
+            li(style="list-style:none;")
+                a(href='/user/'+user.id,style="text-decoration:none;")
                     p Username: #{user.username}
                     p Email: #{user.email}
+                    p ------------------------
